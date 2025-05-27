@@ -1,0 +1,23 @@
+<div class="task-form-container">
+  <h2>{{ isEditing ? 'Editar tarea' : 'Agregar tarea' }}</h2>
+
+  <form (ngSubmit)="onSubmit()" class="task-form">
+    <label for="title">Título:</label>
+    <input id="title" type="text" [(ngModel)]="task.title" name="title" required />
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" [(ngModel)]="task.description" name="description" required></textarea>
+
+    <label for="priority">Prioridad:</label>
+    <select id="priority" [(ngModel)]="task.priority" name="priority" required>
+      <option value="Alta">Alta</option>
+      <option value="Media">Media</option>
+      <option value="Baja">Baja</option>
+    </select>
+
+    <label for="dueDate">Fecha de vencimiento:</label>
+    <input id="dueDate" type="date" [(ngModel)]="task.dueDate" name="dueDate" required />
+
+    <button type="submit">{{ isEditing ? 'Actualizar tarea' : 'Guardar tarea' }}</button>
+  </form>
+</div>

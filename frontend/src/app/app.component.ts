@@ -7,14 +7,33 @@ import { delay, filter, map, tap } from 'rxjs/operators';
 import { ColorModeService } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { Task } from './models/task.model';
 
 @Component({
     selector: 'app-root',
-    template: '<router-outlet />',
-    imports: [RouterOutlet]
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    imports: [TaskListComponent, TaskFormComponent],
+    template: `
+    <app-task-form></app-task-form>
+    <app-task-list></app-task-list>
+  `
 })
 export class AppComponent implements OnInit {
-  title = 'CoreUI Angular Admin Template';
+  title = 'TaskManager Pro';
+
+  selectedTask: Task | null = null;
+
+  onEditTask(task: Task) {
+    this.selectedTask = task;
+  }
+
+  onFormSubmit() {
+    this.selectedTask = null;
+  }
 
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
   readonly #activatedRoute: ActivatedRoute = inject(ActivatedRoute);

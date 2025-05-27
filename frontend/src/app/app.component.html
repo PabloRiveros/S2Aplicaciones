@@ -1,0 +1,4 @@
+<h1>TaskManager Pro</h1>
+<app-task-form [taskToEdit]="selectedTask" (formSubmit)="onFormSubmit()"></app-task-form>
+<app-task-list (edit)="onEditTask($event)"></app-task-list>
+
